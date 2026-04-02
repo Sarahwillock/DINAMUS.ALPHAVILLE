@@ -9,8 +9,8 @@ const units = [
     accent: 'border-cyan-400',
     button: 'bg-cyan-400 text-black hover:bg-cyan-300',
     icon: Building2,
-    description:
-      'Página própria da Dinamus para você organizar agenda, localização, ministérios e avisos da igreja.'
+    description: 'Página própria da Dinamus para você organizar agenda, localização, ministérios e avisos da igreja.',
+    image: '/capa.JPEG'
   },
   {
     title: 'Escola Huios',
@@ -19,8 +19,7 @@ const units = [
     accent: 'border-amber-400',
     button: 'bg-amber-400 text-black hover:bg-amber-300',
     icon: GraduationCap,
-    description:
-      'Página própria da Huios para concentrar módulos, calendário, professores e informações da escola.'
+    description: 'Página própria da Huios para concentrar módulos, calendário, professores e informações da escola.'
   },
   {
     title: 'MOVE',
@@ -29,57 +28,50 @@ const units = [
     accent: 'border-move-pink',
     button: 'bg-move-blue text-white hover:bg-move-pink',
     icon: Sparkles,
-    description:
-      'Abre o projeto MOVE completo com agenda, líderes, GCs, local e os eventos que já existiam.'
+    description: 'Abre o projeto MOVE completo com agenda, líderes, GCs, local e os eventos que já existiam.'
   }
 ];
 
 export default function PortalHome() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="mx-auto max-w-7xl px-4 py-6 md:px-8 md:py-10">
-        {/* HERO */}
-        <section className="relative overflow-hidden border border-white/10 bg-black">
-          <img
-            src="/capa.JPEG"
-            alt="Capa Dinamus"
-            className="h-[420px] w-full object-cover object-center md:h-[560px] lg:h-[680px]"
-          />
-
-          <div className="absolute inset-0 bg-black/55" />
-
-          <div className="absolute inset-0 flex items-start">
-            <div className="w-full p-6 md:p-10 lg:p-14">
-              <div className="max-w-4xl bg-black/30 p-4 backdrop-blur-sm md:p-8">
-                <div className="mb-4 inline-block border border-white/20 px-4 py-1 text-[11px] font-black uppercase tracking-[0.35em] text-white/70 md:text-xs">
-                  Portal principal
-                </div>
-
-                <h1 className="max-w-5xl text-4xl font-black uppercase leading-none md:text-6xl lg:text-7xl">
-                  Seja família Dinamus
-                </h1>
-
-                <p className="mt-5 max-w-3xl text-sm text-white/80 md:text-lg lg:text-xl">
-                  Selecione uma de nossas páginas para acessar suas informações,
-                  agenda e conteúdos exclusivos.
-                </p>
-              </div>
-            </div>
+    <div className="min-h-screen bg-black px-6 py-10 text-white md:px-10">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 border-2 border-white/10 bg-neutral-950 p-8 md:p-12">
+          <div className="mb-4 inline-block border border-white/20 px-4 py-1 text-xs font-black uppercase tracking-[0.35em] text-white/70">
+            Portal principal
           </div>
-        </section>
 
-        {/* CARDS */}
-        <section className="-mt-10 relative z-10 md:-mt-16 lg:-mt-20">
-          <div className="grid gap-6 lg:grid-cols-3">
-            {units.map((unit) => {
-              const Icon = unit.icon;
+          <h1 className="max-w-5xl text-4xl font-black uppercase leading-none md:text-7xl">
+            SEJA FAMÍLIA DINAMUS
+          </h1>
 
-              return (
-                <Link
-                  key={unit.title}
-                  to={unit.path}
-                  className={`group flex min-h-[320px] flex-col justify-between border-2 ${unit.accent} bg-black/85 p-8 backdrop-blur-sm transition duration-300 hover:-translate-y-1`}
-                >
+          <p className="mt-6 max-w-3xl text-base text-white/70 md:text-xl">
+            Selecione uma de nossas páginas para acessar suas informações, agenda e conteúdos exclusivos.
+          </p>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-3">
+          {units.map((unit) => {
+            const Icon = unit.icon;
+
+            return (
+              <Link
+                key={unit.title}
+                to={unit.path}
+                className={`group flex min-h-[420px] flex-col overflow-hidden border-2 ${unit.accent} bg-neutral-950 transition-transform hover:-translate-y-1`}
+              >
+                {unit.image && (
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <img
+                      src={unit.image}
+                      alt={unit.title}
+                      className="h-full w-full object-cover object-center transition duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/35" />
+                  </div>
+                )}
+
+                <div className="flex flex-1 flex-col justify-between p-8">
                   <div>
                     <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/5">
                       <Icon size={28} />
@@ -104,11 +96,11 @@ export default function PortalHome() {
                     <span>Acessar página</span>
                     <ArrowRight size={18} />
                   </div>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
