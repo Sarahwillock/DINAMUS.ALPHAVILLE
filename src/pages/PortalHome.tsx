@@ -33,7 +33,17 @@ const units = [
 
 export default function PortalHome() {
   return (
-    <div className="min-h-screen bg-black px-6 py-10 text-white md:px-10">
+    <div
+  className="min-h-screen relative px-6 py-10 text-white md:px-10"
+  style={{
+    backgroundImage: "url('/capa.JPEG')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  <div className="absolute inset-0 bg-black/70"></div>
+
+  <div className="relative z-10">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 border-2 border-white/10 bg-neutral-950 p-8 md:p-12">
           <div className="mb-4 inline-block border border-white/20 px-4 py-1 text-xs font-black uppercase tracking-[0.35em] text-white/70">
