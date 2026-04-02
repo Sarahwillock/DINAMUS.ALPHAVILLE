@@ -3,11 +3,10 @@ import { CalendarDays, Bell, Search } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
 const navItems = [
-  { name: 'PORTAL', path: '/' },
-  { name: 'INÍCIO MOVE', path: '/move/schedules' },
+  { name: 'INÍCIO', path: '/move/schedules' },
   { name: 'AGENDA', path: '/move/full-schedule' },
-  { name: 'EVENTOS MOVE', path: '/move/schedules' },
-  { name: 'LÍDERES', path: '/move/leaders' },
+  { name: 'EVENTOS MOVE', path: '/move/june' },
+  { name: 'LÍDERES DA CASA', path: '/move/leaders' },
   { name: 'GCS', path: '/move/gcs' },
 ];
 
