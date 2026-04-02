@@ -7,7 +7,7 @@ const navItems = [
   { name: 'Início MOVE', path: '/move/schedules', icon: Home },
   { name: 'Agenda', path: '/move/full-schedule', icon: Calendar },
   { name: 'EVENTOS MOVE', path: '/move/schedules', icon: LayoutGrid },
-  { name: 'Líderes', path: '/move/leaders', icon: Mic2 },
+  { name: 'Líderes da Casa', path: '/move/leaders', icon: Mic2 },
   { name: 'GCs', path: '/move/gcs', icon: Ticket },
   { name: 'Local', path: '/move/local', icon: MapPin },
 ];
