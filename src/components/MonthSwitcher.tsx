@@ -2,9 +2,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 
 const months = [
-  { name: 'Abril', path: '/april' },
-  { name: 'Maio', path: '/may' },
-  { name: 'Junho', path: '/' },
+  { name: 'Abril', path: '/move/april' },
+  { name: 'Maio', path: '/move/may' },
+  { name: 'Junho', path: '/move/june' },
 ];
 
 export default function MonthSwitcher() {
@@ -13,7 +13,7 @@ export default function MonthSwitcher() {
   return (
     <div className="flex gap-2 mb-8 overflow-x-auto pb-2 no-scrollbar">
       {months.map((month) => {
-        const isActive = location.pathname === month.path || (month.path === '/' && location.pathname === '/june');
+        const isActive = location.pathname === month.path;
         return (
           <Link
             key={month.name}
@@ -30,7 +30,7 @@ export default function MonthSwitcher() {
         );
       })}
       <Link
-        to="/schedules"
+        to="/move/schedules"
         className="px-6 py-2 font-black uppercase italic tracking-tighter transition-all border-2 bg-black/40 text-white/60 border-white/20 hover:border-white/60 ml-auto"
       >
         EVENTOS MOVE
