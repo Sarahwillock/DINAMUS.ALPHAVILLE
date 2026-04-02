@@ -4,9 +4,7 @@ import MoveBottomNav from '../components/MoveBottomNav';
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
-
-      {/* CONTEÚDO */}
-      <div className="p-6 md:p-10 pb-28">
+      <div className="p-6 md:p-10 pb-32">
         <div className="max-w-6xl mx-auto pt-8">
           <div className="border-2 border-move-blue bg-neutral-950 p-8 md:p-12">
             <div className="inline-block bg-move-pink px-4 py-1 text-xs font-black uppercase tracking-widest mb-6">
@@ -55,9 +53,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* MENU INFERIOR */}
       <MoveBottomNav />
-
     </div>
   );
 }
