@@ -3,31 +3,32 @@ import { Calendar, Mic2, Ticket, MapPin, LayoutGrid, Home } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
 const navItems = [
-  { name: 'Início', path: '/', icon: Home },
-  { name: 'Agenda', path: '/full-schedule', icon: Calendar },
-  { name: 'EVENTOS MOVE', path: '/june', icon: LayoutGrid },
-  { name: 'Líderes da Casa', path: '/leaders', icon: Mic2 },
-  { name: 'GCs', path: '/gcs', icon: Ticket },
-  { name: 'Local', path: '/local', icon: MapPin },
+  { name: 'Portal', path: '/', icon: Home },
+  { name: 'Início MOVE', path: '/move/schedules', icon: Home },
+  { name: 'Agenda', path: '/move/full-schedule', icon: Calendar },
+  { name: 'EVENTOS MOVE', path: '/move/june', icon: LayoutGrid },
+  { name: 'Líderes da Casa', path: '/move/leaders', icon: Mic2 },
+  { name: 'GCs', path: '/move/gcs', icon: Ticket },
+  { name: 'Local', path: '/move/local', icon: MapPin },
 ];
 
 export default function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="hidden lg:flex flex-col w-64 h-screen fixed left-0 bg-neutral-900 border-r-2 border-move-blue z-40 font-bold uppercase">
-      <div className="p-6 border-b-2 border-move-blue/20">
+    <aside className="fixed left-0 z-40 hidden h-screen w-64 flex-col border-r-2 border-move-blue bg-neutral-900 font-bold uppercase lg:flex">
+      <div className="border-b-2 border-move-blue/20 p-6">
         <div className="text-3xl font-black text-white">MOVE 2026</div>
-        <a 
-          href="https://www.instagram.com/move.alphaville/" 
-          target="_blank" 
+        <a
+          href="https://www.instagram.com/move.alphaville/"
+          target="_blank"
           rel="noopener noreferrer"
-          className="text-[10px] text-move-blue hover:text-move-pink transition-colors tracking-widest mt-1 block"
+          className="mt-1 block text-[10px] tracking-widest text-move-blue transition-colors hover:text-move-pink"
         >
           @MOVE.ALPHAVILLE
         </a>
       </div>
-      <nav className="flex-1 mt-4">
+      <nav className="mt-4 flex-1">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.path;
@@ -36,10 +37,8 @@ export default function Sidebar() {
               key={item.name}
               to={item.path}
               className={cn(
-                "p-4 flex items-center gap-4 transition-colors",
-                isActive 
-                  ? "bg-move-blue text-white brightness-125" 
-                  : "text-neutral-400 hover:bg-move-pink hover:text-white"
+                'flex items-center gap-4 p-4 transition-colors',
+                isActive ? 'bg-move-blue text-white brightness-125' : 'text-neutral-400 hover:bg-move-pink hover:text-white'
               )}
             >
               <Icon size={20} />
