@@ -65,7 +65,7 @@ export default function PortalHome() {
                     <img
                       src={unit.image}
                       alt={unit.title}
-                      className="h-full w-full object-cover object-center transition duration-300 group-hover:scale-105"
+                      className="h-full w-full object-cover object-bottom transition duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/35" />
                   </div>
