@@ -1,40 +1,47 @@
+import { Calendar, Home, MapPin, Mic2, Users, LayoutGrid } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { cn } from '@/src/lib/utils';
 
-const months = [
-  { name: 'Abril', path: '/move/april' },
-  { name: 'Maio', path: '/move/may' },
-  { name: 'Junho', path: '/move/june' },
+const items = [
+  { label: 'Início', to: '/schedules', icon: Home },
+  { label: 'Agenda', to: '/full-schedule', icon: Calendar },
+  { label: 'Eventos', to: '/june', icon: LayoutGrid },
+  { label: 'Líderes', to: '/leaders', icon: Mic2 },
+  { label: 'GCs', to: '/gc', icon: Users },
+  { label: 'Local', to: '/local', icon: MapPin },
 ];
 
-export default function MonthSwitcher() {
+export default function MoveBottomNav() {
   const location = useLocation();
 
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
+
   return (
-    <div className="flex gap-2 mb-8 overflow-x-auto pb-2 no-scrollbar">
-      {months.map((month) => {
-        const isActive = location.pathname === month.path;
-        return (
-          <Link
-            key={month.name}
-            to={month.path}
-            className={cn(
-              "px-6 py-2 font-black uppercase italic tracking-tighter transition-all border-2",
-              isActive 
-                ? "bg-move-blue text-white border-move-blue scale-105 z-10" 
-                : "bg-black/40 text-white/60 border-white/20 hover:border-white/60"
-            )}
-          >
-            {month.name}
-          </Link>
-        );
-      })}
-      <Link
-        to="/move/schedules"
-        className="px-6 py-2 font-black uppercase italic tracking-tighter transition-all border-2 bg-black/40 text-white/60 border-white/20 hover:border-white/60 ml-auto"
-      >
-        EVENTOS MOVE
-      </Link>
-    </div>
+    <nav className="fixed bottom-0 left-0 z-50 w-full border-t border-white/10 bg-black/65 px-4 pb-6 pt-3 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+        {items.map((item) => {
+          const Icon = item.icon;
+          const active = isActive(item.to);
+
+          return (
+            <Link
+              key={item.label}
+              to={item.to}
+              className={`flex min-w-[78px] flex-col items-center gap-1.5 rounded-2xl px-3 py-2 text-center transition-all duration-300 ${
+                active
+                  ? 'scale-105 bg-[#AC351B] text-white shadow-lg shadow-[#AC351B]/20'
+                  : 'text-white/55 hover:bg-white/5 hover:text-white'
+              }`}
+            >
+              <Icon className="h-5 w-5" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em]">
+                {item.label}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
   );
 }
