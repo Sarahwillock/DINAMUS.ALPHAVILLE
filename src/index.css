@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;0,900;1,900&family=Unbounded:wght@900&family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap');
+@import "tailwindcss";
 
 @theme {
   --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
@@ -13,6 +13,11 @@
 }
 
 @layer base {
+  html, body, #root {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-move-dark text-white font-sans antialiased;
   }
