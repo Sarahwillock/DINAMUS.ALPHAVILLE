@@ -1,45 +1,76 @@
 import { Link } from 'react-router-dom';
-import { UNITS } from '../data/units';
+import { ArrowRight, Building2, GraduationCap, Sparkles } from 'lucide-react';
+
+const units = [
+  {
+    title: 'Dinamus Alphaville',
+    subtitle: 'Igreja e programação geral',
+    path: '/dinamus',
+    accent: 'border-cyan-400',
+    button: 'bg-cyan-400 text-black hover:bg-cyan-300',
+    icon: Building2,
+    description: 'Página própria da Dinamus para você organizar agenda, localização, ministérios e avisos da igreja.'
+  },
+  {
+    title: 'Escola Huios',
+    subtitle: 'Formação e conteúdos da escola',
+    path: '/huios',
+    accent: 'border-amber-400',
+    button: 'bg-amber-400 text-black hover:bg-amber-300',
+    icon: GraduationCap,
+    description: 'Página própria da Huios para concentrar módulos, calendário, professores e informações da escola.'
+  },
+  {
+    title: 'MOVE',
+    subtitle: 'Site atual que já estava rodando',
+    path: '/move',
+    accent: 'border-move-pink',
+    button: 'bg-move-blue text-white hover:bg-move-pink',
+    icon: Sparkles,
+    description: 'Abre o projeto MOVE completo com agenda, líderes, GCs, local e os eventos que já existiam.'
+  }
+];
 
 export default function PortalHome() {
   return (
     <div className="min-h-screen bg-black px-6 py-10 text-white md:px-10">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-10 border border-white/15 bg-neutral-950 p-8 md:p-12">
-          <div className="mb-4 inline-block border border-white/20 px-4 py-2 text-xs font-black uppercase tracking-[0.3em] text-white/70">
+        <div className="mb-12 border-2 border-white/10 bg-neutral-950 p-8 md:p-12">
+          <div className="mb-4 inline-block border border-white/20 px-4 py-1 text-xs font-black uppercase tracking-[0.35em] text-white/70">
             Portal principal
           </div>
-          <h1 className="mb-5 text-4xl font-black uppercase leading-none md:text-7xl">
-            Escolha a <span className="text-move-blue">aba</span> que deseja acessar
+          <h1 className="max-w-5xl text-4xl font-black uppercase leading-none md:text-7xl">
+            Escolha qual área você quer abrir
           </h1>
-          <p className="max-w-3xl text-lg text-white/75 md:text-xl">
-            O site agora começa com três entradas principais: Dinamus Alphaville, Escola Huios e MOVE. Cada área pode ter conteúdos próprios, sem misturar as informações.
+          <p className="mt-6 max-w-3xl text-base text-white/70 md:text-xl">
+            Agora cada unidade tem a sua própria página. A MOVE continua com o site completo, e Dinamus Alphaville e Escola Huios já estão separadas em páginas independentes.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {UNITS.map((unit) => (
-            <Link
-              key={unit.id}
-              to={unit.path}
-              className="group border border-white/15 bg-neutral-950 p-6 transition-transform hover:-translate-y-1 hover:border-white/40"
-            >
-              <div className={`mb-6 inline-flex border px-3 py-1 text-xs font-black uppercase tracking-[0.25em] ${unit.accent}`}>
-                {unit.shortName}
-              </div>
-              <h2 className="mb-3 text-3xl font-black uppercase leading-none">{unit.name}</h2>
-              <p className="mb-6 min-h-20 text-white/70">{unit.subtitle}</p>
-              <ul className="mb-8 space-y-2 text-sm font-bold uppercase tracking-wide text-white/75">
-                {unit.highlights.map((highlight) => (
-                  <li key={highlight}>• {highlight}</li>
-                ))}
-              </ul>
-              <div className="flex items-center justify-between border-t border-white/10 pt-4">
-                <span className="text-sm font-bold uppercase tracking-[0.2em] text-white/50">Entrar</span>
-                <span className="text-lg font-black uppercase text-move-blue transition group-hover:text-white">{unit.cta}</span>
-              </div>
-            </Link>
-          ))}
+        <div className="grid gap-6 lg:grid-cols-3">
+          {units.map((unit) => {
+            const Icon = unit.icon;
+            return (
+              <Link
+                key={unit.title}
+                to={unit.path}
+                className={`group flex min-h-[320px] flex-col justify-between border-2 ${unit.accent} bg-neutral-950 p-8 transition-transform hover:-translate-y-1`}
+              >
+                <div>
+                  <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/5">
+                    <Icon size={28} />
+                  </div>
+                  <p className="mb-3 text-xs font-black uppercase tracking-[0.3em] text-white/50">{unit.subtitle}</p>
+                  <h2 className="text-3xl font-black uppercase leading-tight md:text-4xl">{unit.title}</h2>
+                  <p className="mt-5 text-sm leading-6 text-white/70 md:text-base">{unit.description}</p>
+                </div>
+                <div className={`mt-8 inline-flex items-center justify-between px-5 py-4 font-black uppercase transition ${unit.button}`}>
+                  <span>Acessar página</span>
+                  <ArrowRight size={18} />
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
