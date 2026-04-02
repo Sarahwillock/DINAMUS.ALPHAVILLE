@@ -40,10 +40,12 @@ export default function PortalHome() {
             Portal principal
           </div>
           <h1 className="max-w-5xl text-4xl font-black uppercase leading-none md:text-7xl">
-            Escolha qual área você quer abrir
+            SEJA FAMILIA DINAMUS
           </h1>
           <p className="mt-6 max-w-3xl text-base text-white/70 md:text-xl">
-            Agora cada unidade tem a sua própria página. A MOVE continua com o site completo, e Dinamus Alphaville e Escola Huios já estão separadas em páginas independentes.
+            <p>
+  Selecione uma de noaas paginas para acessar suas informações, agenda e conteúdos exclusivos.
+</p>
           </p>
         </div>
 
