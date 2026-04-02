@@ -6,7 +6,7 @@ const navItems = [
   { name: 'Portal', path: '/', icon: Home },
   { name: 'Início MOVE', path: '/move/schedules', icon: Home },
   { name: 'Agenda', path: '/move/full-schedule', icon: Calendar },
-  { name: 'EVENTOS MOVE', path: '/move/june', icon: LayoutGrid },
+  { name: 'EVENTOS MOVE', path: '/move/schedules', icon: LayoutGrid },
   { name: 'Líderes da Casa', path: '/move/leaders', icon: Mic2 },
   { name: 'GCs', path: '/move/gcs', icon: Ticket },
   { name: 'Local', path: '/move/local', icon: MapPin },
@@ -28,17 +28,21 @@ export default function Sidebar() {
           @MOVE.ALPHAVILLE
         </a>
       </div>
+
       <nav className="mt-4 flex-1">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.path;
+
           return (
             <Link
               key={item.name}
               to={item.path}
               className={cn(
                 'flex items-center gap-4 p-4 transition-colors',
-                isActive ? 'bg-move-blue text-white brightness-125' : 'text-neutral-400 hover:bg-move-pink hover:text-white'
+                isActive
+                  ? 'bg-move-blue text-white brightness-125'
+                  : 'text-neutral-400 hover:bg-move-pink hover:text-white'
               )}
             >
               <Icon size={20} />
