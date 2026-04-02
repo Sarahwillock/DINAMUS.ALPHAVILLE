@@ -36,6 +36,7 @@ interface EventItem {
   date: string;
   month: string;
   description: string;
+  location?: string;
   isPrimary?: boolean;
 }
 
@@ -56,6 +57,12 @@ interface GC {
   time: string;
   frequency: string;
 }
+
+const CHURCH_NAME = 'Igreja Dinamus Alphaville';
+const CHURCH_ADDRESS = 'Estrada Bela Vista, 2914 - Alphaville, Santana de Parnaíba - SP, 06472-005';
+const CHURCH_MAPS =
+  'https://www.google.com/maps/place/Igreja+Dinamus+Alphaville/@-23.4535947,-46.8986446,17z/data=!3m1!4b1!4m6!3m5!1s0x94cf038c37463f3b:0x49e17d54b4abbcc5!8m2!3d-23.4535947!4d-46.8960697!16s%2Fg%2F11p76kdcpq?authuser=0&entry=ttu&g_ep=EgoyMDI2MDMzMC4wIKXMDSoASAFQAw%3D%3D';
+const CHURCH_LOCATION = `${CHURCH_NAME} - ${CHURCH_ADDRESS}`;
 
 const SOCIAL_LINKS: SocialLink[] = [
   {
@@ -94,6 +101,7 @@ const EVENTS: EventItem[] = [
     date: '05',
     month: 'Abr',
     description: 'Às 10:00 no DNMS.ALPHA Principal',
+    location: CHURCH_LOCATION,
     isPrimary: true
   },
   {
@@ -101,21 +109,24 @@ const EVENTS: EventItem[] = [
     title: 'Corrida Dokimos',
     date: '11',
     month: 'Abr',
-    description: 'Às 08:00 - Concentração no estacionamento'
+    description: 'Às 08:00 - Concentração no estacionamento',
+    location: CHURCH_LOCATION
   },
   {
     id: '3',
     title: 'Culto de Domingo',
     date: '12',
     month: 'Abr',
-    description: 'Todos os domingos às 10:00'
+    description: 'Todos os domingos às 10:00',
+    location: CHURCH_LOCATION
   },
   {
     id: '4',
     title: 'Culto de Domingo',
     date: '19',
     month: 'Abr',
-    description: 'Todos os domingos às 10:00'
+    description: 'Todos os domingos às 10:00',
+    location: CHURCH_LOCATION
   }
 ];
 
@@ -147,14 +158,30 @@ export default function DinamusHome() {
     const month = monthMap[event.month] || '04';
     const date = event.date.padStart(2, '0');
 
+    const startHour = event.title === 'Corrida Dokimos' ? '080000' : '100000';
+    const endHour = event.title === 'Corrida Dokimos' ? '100000' : '120000';
+
+    const safeText = (value: string) =>
+      value
+        .replace(/\\/g, '\\\\')
+        .replace(/\n/g, '\\n')
+        .replace(/,/g, '\\,')
+        .replace(/;/g, '\\;');
+
+    const fullDescription = `${event.description}\n\nLocal: ${event.location || CHURCH_LOCATION}\nMapa: ${CHURCH_MAPS}`;
+
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
+      'PRODID:-//Dinamus Alphaville//Agenda//PT-BR',
+      'CALSCALE:GREGORIAN',
       'BEGIN:VEVENT',
-      `DTSTART:${year}${month}${date}T100000Z`,
-      `DTEND:${year}${month}${date}T120000Z`,
-      `SUMMARY:${event.title}`,
-      `DESCRIPTION:${event.description}`,
+      `DTSTART:${year}${month}${date}T${startHour}Z`,
+      `DTEND:${year}${month}${date}T${endHour}Z`,
+      `SUMMARY:${safeText(event.title)}`,
+      `DESCRIPTION:${safeText(fullDescription)}`,
+      `LOCATION:${safeText(event.location || CHURCH_LOCATION)}`,
+      `URL:${CHURCH_MAPS}`,
       'END:VEVENT',
       'END:VCALENDAR'
     ].join('\n');
@@ -477,9 +504,9 @@ export default function DinamusHome() {
                     </div>
                     <div>
                       <p className="font-bold text-white">Endereço</p>
-                      <p className="mt-1 text-white/65">Estrada Bela Vista, 2914 - Alphaville, Santana de Parnaíba - SP, 06472-005</p>
+                      <p className="mt-1 text-white/65">{CHURCH_ADDRESS}</p>
                       <a
-                        href="https://www.google.com/maps/place/Igreja+Dinamus+Alphaville/@-23.4535947,-46.8986446,17z/data=!3m1!4b1!4m6!3m5!1s0x94cf038c37463f3b:0x49e17d54b4abbcc5!8m2!3d-23.4535947!4d-46.8960697!16s%2Fg%2F11p76kdcpq?authuser=0&entry=ttu&g_ep=EgoyMDI2MDMzMC4wIKXMDSoASAFQAw%3D%3D"
+                        href={CHURCH_MAPS}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#ff987c] hover:underline"
