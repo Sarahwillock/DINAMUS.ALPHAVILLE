@@ -44,7 +44,6 @@ function MoveLayout() {
               <Route path="/move/gcs" element={<GCs />} />
               <Route path="/move/full-schedule" element={<FullSchedule />} />
               <Route path="/move/leaders" element={<Leaders />} />
-              <Route path="/move/tickets" element={<GCs />} />
             </Routes>
           </AnimatePresence>
         </main>
