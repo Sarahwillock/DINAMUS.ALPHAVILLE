@@ -239,7 +239,7 @@ export default function DinamusHome() {
                 <img
                   src="/capa.JPEG"
                   alt="Dinamus Alphaville"
-                  className="h-[340px] w-full object-cover object-center md:h-[460px]"
+                  className="h-[340px] w-full object-cover object-top md:h-[460px]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e10] via-[#0c0e10]/35 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
