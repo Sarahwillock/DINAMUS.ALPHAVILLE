@@ -20,7 +20,7 @@ export default function MoveBottomNav() {
       <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = location.pathname === item.path;
+          const isActive = location.pathname.startsWith(item.path);
 
           return (
             <Link
@@ -29,7 +29,7 @@ export default function MoveBottomNav() {
               className={cn(
                 'flex min-w-[92px] flex-col items-center gap-1.5 rounded-2xl px-3 py-2 text-center font-bold uppercase transition-all duration-300',
                 isActive
-                  ? 'bg-move-blue text-white brightness-125'
+                  ? 'bg-move-blue text-white brightness-125 scale-105'
                   : 'text-neutral-400 hover:bg-move-pink hover:text-white'
               )}
             >
